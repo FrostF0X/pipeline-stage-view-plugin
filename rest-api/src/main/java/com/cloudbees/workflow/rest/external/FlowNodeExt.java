@@ -28,6 +28,7 @@ import com.cloudbees.workflow.rest.endpoints.flownode.Describe;
 import com.cloudbees.workflow.rest.hal.Link;
 import com.cloudbees.workflow.rest.hal.Links;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import hudson.model.Action;
 import hudson.model.Queue;
 import org.jenkinsci.plugins.workflow.actions.ArgumentsAction;
 import org.jenkinsci.plugins.workflow.actions.ErrorAction;
@@ -40,6 +41,7 @@ import org.jenkinsci.plugins.workflow.support.actions.PauseAction;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author <a href="mailto:tom.fennelly@gmail.com">tom.fennelly@gmail.com</a>
@@ -54,6 +56,7 @@ public class FlowNodeExt {
     private StatusExt status;
     private ErrorExt error;
     private String parameterDescription;
+    private List<Action> actionList;
     private long startTimeMillis;
     private long durationMillis;
     private long pauseDurationMillis;
@@ -142,6 +145,14 @@ public class FlowNodeExt {
         this.pauseDurationMillis = pauseDurationMillis;
     }
 
+    public List<Action> getActionList() {
+        return actionList;
+    }
+
+    public void setActionList(List<Action> actionList) {
+        this.actionList = actionList;
+    }
+
     public static final class FlowNodeLinks extends Links {
         private Link log;
 
@@ -196,6 +207,7 @@ public class FlowNodeExt {
         set_links(new FlowNodeLinks());
         get_links().initSelf(Describe.getUrl(node));
         setStatus(status);
+        setActionList(node.getActions());
         if (status != StatusExt.NOT_EXECUTED && error != null) {
             setError(ErrorExt.create(error));
         }

@@ -28,7 +28,7 @@
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <version>2.22</version>
+        <version>3.4</version>
     </parent>
 
     <groupId>org.jenkins-ci.plugins.pipeline-stage-view</groupId>
@@ -46,8 +46,8 @@
     </scm>
 
     <properties>
-        <jenkins.version>1.642.3</jenkins.version>
-        <java.level>7</java.level>
+        <jenkins.version>2.121</jenkins.version>
+        <java.level>8</java.level>
         <workflow.version>2.0</workflow.version>
     </properties>
 
@@ -63,6 +63,34 @@
             <url>http://repo.jenkins-ci.org/public/</url>
         </pluginRepository>
     </pluginRepositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins.workflow</groupId>
+            <artifactId>workflow-aggregator</artifactId>
+            <version>2.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>scm-api</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci</groupId>
+            <artifactId>symbol-annotation</artifactId>
+            <version>1.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci</groupId>
+            <artifactId>annotation-indexer</artifactId>
+            <version>1.12</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
 
     <modules>
         <module>rest-api</module>

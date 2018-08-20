@@ -26,6 +26,7 @@ package com.cloudbees.workflow.rest.external;
 import com.cloudbees.workflow.flownode.FlowNodeUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import hudson.model.Action;
 import org.jenkinsci.plugins.workflow.actions.LabelAction;
 import org.jenkinsci.plugins.workflow.actions.NotExecutedNodeAction;
 import org.jenkinsci.plugins.workflow.actions.StageAction;
@@ -85,7 +86,7 @@ public class StageNodeExt extends FlowNodeExt {
         public long getStartTimeMillis() {return myNode.getStartTimeMillis();}
         public long getDurationMillis() {return myNode.getDurationMillis();}
         public long getPauseDurationMillis() {return myNode.getPauseDurationMillis();}
-
+        public List<Action> getActions() {return  myNode.getActionList();}
         @Override
         public List<AtomFlowNodeExt> getStageFlowNodes() {
             return null;
